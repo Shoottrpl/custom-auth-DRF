@@ -242,33 +242,12 @@ cd simple_auth
 docker-compose up --build
 ```
 
-3. **Создание суперпользователя:**
-```bash
-docker-compose exec web python manage.py createsuperuser
-```
+3. **Креды для входа:**
 
-4. **Заполнение тестовыми данными:**
-```bash
-docker-compose exec web python manage.py shell
-```
-```python
-from authapp.models import Role, BusinessElement, AccessRoleRule
+### Пользователь
+- **email:** `manager@mail.com`
+- **password:** `manager1337`
 
-# Создание ролей
-admin_role = Role.objects.create(name='admin')
-manager_role = Role.objects.create(name='manager')
-user_role = Role.objects.create(name='user')
-
-# Создание бизнес-объектов
-product_element = BusinessElement.objects.create(name='product')
-order_element = BusinessElement.objects.create(name='order')
-user_element = BusinessElement.objects.create(name='user')
-
-# Создание правил доступа
-AccessRoleRule.objects.create(
-    role=admin_role, element=product_element,
-    read_permission=True, read_all_permission=True,
-    create_permission=True, update_permission=True,
-    update_all_permission=True, delete_permission=True,
-    delete_all_permission=True
-)
+### Админ
+- **email:** `root@mail.com`
+- **password:** `root`
